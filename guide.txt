@@ -1,0 +1,99 @@
+1.
+Устанавливаем Vue CLI
+npm install -g @vue/cli
+
+2.
+Запускаем менеджер проектов
+vue ui
+
+В настройках пресета выбираем
+- Babel
+- Progressive Web App (PWA) Support
+- Router
+- Vuex
+- CSS Pre-processors
+- Linter / Formatter
+- Использовать файл
+
+history mode нужен для использования путей через /
+Sass/SCSS (with node-sass)
+
+3.
+В VS Code необходимо установить расширение Vetur для работы с Vue
+
+4.
+Устанавливаем библиотеку MaterializeCSS
+npm install materialize-css@next
+
+Подключаем библиотеку внутри App.vue
+Знак ~ ведёт к папке node_modules
+@import '~materialize-css/dist/css/materialize.min.css';
+
+Импортируем index.css из папки assets
+@import 'assets/index.css';
+при использовании алиаса @ в пути выдавал ошибку
+
+Подключаем файл js из библиотеки MaterializeCSS внутри main.js
+import 'materialize-css/dist/js/materialize.min'
+
+Подключаем иконки в файле public/index.html
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+5.
+EditorConfig позволяет поддерживать единый стиль кода проекта
+независимо от редактора
+Создаём файл .editorconfig
+Устанавливаем расширение для редактора EditorConfig for VS Code
+
+6.
+Создаём папку src/layouts
+В ней хранятся слои (базовые элементы окна для разных страниц)
+
+Создаём страницы внутри папки src/views
+
+Настраиваем роуты в файле src/router/index.js
+В роутах можно использовать алиас @ в путях
+Добавляем свойство meta, чтобы привязать страницы к нужным слоям
+Внутри App.vue мы сможем получить данные из meta свойства
+
+7.
+Настраиваем рендеринг внутри App.vue
+<component :is="layout"> рендерит слой
+<router-view/> рендерит страницу (view) по текущему роуту
+
+:is="layout" относится к методу computed.layout()
+
+Делаем import слоёв (алиасы работают) и регистрируем их в components
+
+********** 3 **********
+
+8.
+Выносим элементы слоёв в отдельные компоненты
+Внутри папки components/app создаём компоненты Navbar и Sidebar
+Данные компоненты необходимо зарегистрировать и прописать в MainLayout
+Вставляем компоненты внутрь слоя
+<Navbar />
+<Sidebar />
+
+9.
+В компоненте Sidebar вставляем <router-link> для ссылок
+Заменяем элемент <li> на <router-link>
+
+10.
+@click.prevent модификатор события (аналогичен preventDefault)
+@click.prevent="$emit('click')" передаём пользовательское событие наверх
+Пользовательское событие может иметь любое название
+
+Внутри MainLayout слушаем данное событие через v-on:click или @click
+В том же файле внутри свойства data создаём состояние isOpen
+@click="isOpen = !isOpen" переключаем значение состояния
+:class="{full: !isOpen}" добавляем класс "full" если isOpen === false
+<Sidebar v-model="isOpen" /> передаём состояние в Sidebar
+
+Внутри Sidebar принимаем состояние через props
+Фактически value принимает значение isOpen
+:class="{open: value}" показываем Sidebar если isOpen === true
+
+
+начать урок 4
+запустить проект npm run serve
