@@ -322,8 +322,86 @@ v-for="cur in currencies"
 ********** 10 **********
 
 19.
+Декомпозируем страницу Categories.vue на компоненты CategoryCreate и CategoryEdit
+
+CategoryCreate.vue
+Добавляем валидацию формы
+В методе mounted() вызываем window.M.updateTextFields()
+Это позволит активировать анимацию полей MaterializeCSS
+
+v-model.number="limit" приводит к числу модель данных
+
+store/category.js
+Создаём модуль для работы с категориями
+Следующая строка создаёт категорию в базе данных
+const category = await firebase.database().ref(`/users/${uid}/categories`).push(title, limit)
+Метод возвращает объект category, у которого есть дополнительное поле key
+key это уникальный идентификатор категории
+
+this.$v.$reset() очищает форму и модель после отправки
+
+В CategoryCreate.vue эмитим событие
+this.$emit('created', category)
+
+Слушаем его в родителе Categories.vue
+<CategoryCreate @created="addNewCategory" />
+Вызываем обработчик addNewCategory()
+
+********** 11 **********
+
+20.
+Categories.vue
+Получаем начальный список всех категорий в базе данных
+await this.$store.dispatch('fetchCategories')
+
+store/category.js
+Object.keys(categories).map() преобразуем объект в массив
+
+CategoryEdit.vue
+window.M.FormSelect.init() запускаем элемент select формы
+destroyed() это life cycle хук, который запускается после уничтожения компонента
+this.select.destroy() очищаем обработчики, чтобы не было утечек памяти
+props: {} такая запись используется для детального описания входящих пропсов
+created() это life cycle хук, который вызывается до mounted()
+В created() задаём значения модели data по умолчанию
+Это необходимо, чтобы выставить стартовые значения формы
+
+<select v-model="current">
+  <option :value="c.id">
+v-model хранит id отображаемого <option>
+:value указывает на id конкретного <option>
+watch.current() наблюдает за изменением id селекта через модель current
+
+store/category.js
+updateCategory() обновляет данные по категории
+await firebase.database().ref(`/users/${uid}/categories`).child(id).update({title, limit})
+.child() находит категорию по id
+.update() обновляет данные
+
+После обновления данных на сервере необходимо обновить клиент
+В компоненте CategoryEdit.vue вызываем пользовательское событие
+this.$emit('updated', categoryData)
+Внутри Categories.vue слушаем данное событие
+@updated="updateCategories"
+
+С обновлением плагина Select MaterializeCSS есть проблема
+Он не реагирует на обновление модели данных Categories.vue
+Фактически нам требуется форсированно перерисовать компонент CategoryEdit.vue
+Для этого можно использовать хак, связанный с атрибутом :key
+<CategoryEdit :key="categories.length + updateCount" />
+updateCount заводим в модели data
+Привязка :key идёт к меняющимся величинам
+Изменение :key вызывает перерисовку компонента
+При создании категории меняется длина массива categories
+При редактировании категории мы меняем величину updateCount
+Две данные операции вызовут перерисовку компонента CategoryEdit.vue
+В случае отсутствия категорий мы показываем вместо компонента текст
+
+********** 12 **********
+
+21.
 
 
-начать урок 10
+начать урок 12
 время 00:00:00
 запустить проект npm run serve
