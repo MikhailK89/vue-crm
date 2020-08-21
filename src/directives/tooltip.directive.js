@@ -7,6 +7,8 @@ export default {
 
     if (el.classList.contains('btn-floating')) {
       options.position = 'left'
+    } else if (el.classList.contains('btn')) {
+      options.position = 'top'
     }
 
     window.M.Tooltip.init(el, options)
