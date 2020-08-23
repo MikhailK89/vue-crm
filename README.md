@@ -7,7 +7,7 @@ email: v@mail.ru
 password: 123456
 
 # Account page problem
-This page contains a request from https to http. This throws a cross domain error.
+This page contains a request from https to http. It throws a cross domain error.
 
 # Guide
 A complete guide in russian to this project is in the folder `/guide.txt`
