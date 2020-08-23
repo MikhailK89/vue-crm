@@ -1,6 +1,9 @@
 # Demo page
 https://mikhailk89.github.io/vue-crm-app/
 
+# Account page problem
+This page contains a request from https to http. This throws a cross domain error.
+
 ## Install node_modules
 ```
 npm install
