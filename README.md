@@ -1,19 +1,20 @@
-# vue-crm
+# Demo page
+https://mikhailk89.github.io/vue-crm-app/
 
-## Project setup
+## Install node_modules
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start project on localhost
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Build version
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Vue CLI Docs
+https://cli.vuejs.org/guide/
