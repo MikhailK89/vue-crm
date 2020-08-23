@@ -6,15 +6,15 @@ https://mikhailk89.github.io/vue-crm-app/
 npm install
 ```
 
-### Start project on localhost
+## Start project on localhost
 ```
 npm run serve
 ```
 
-### Build version
+## Build project
 ```
 npm run build
 ```
 
-### Vue CLI Docs
+## Vue CLI Docs
 https://cli.vuejs.org/guide/
