@@ -16,5 +16,5 @@ npm run build
 ## Vue CLI Docs
 https://cli.vuejs.org/guide/
 
-### Special thanks to Vladilen Minin for the idea of this project
+## Special thanks to Vladilen Minin for the idea of this project
 Find him here: https://www.youtube.com/c/VladilenMinin/videos
