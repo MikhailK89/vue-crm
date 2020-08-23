@@ -3,6 +3,7 @@ https://mikhailk89.github.io/vue-crm-app/
 
 # Test account
 email: v@mail.ru
+
 password: 123456
 
 # Account page problem
