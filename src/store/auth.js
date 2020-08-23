@@ -1,5 +1,4 @@
 import firebase from 'firebase/app'
-import { register } from 'register-service-worker'
 
 export default {
   actions: {
