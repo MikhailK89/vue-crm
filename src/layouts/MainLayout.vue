@@ -15,7 +15,12 @@
       </main>
 
       <div class="fixed-action-btn">
-        <router-link class="btn-floating btn-large blue" to="/record" v-tooltip="'Создать новую запись'">
+        <router-link
+          class="btn-floating btn-large blue"
+          data-btn="add"
+          to="/record"
+          v-tooltip="localizeStr('MainLayout_Create_Record')"
+        >
           <i class="large material-icons">add</i>
         </router-link>
       </div>
@@ -28,6 +33,7 @@ import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 import Loader from '@/components/app/Loader'
 import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'main-layout',
@@ -35,13 +41,6 @@ export default {
     isOpen: true,
     loading: true
   }),
-  async mounted() {
-    if (!Object.keys(this.$store.getters.info).length) {
-      await this.$store.dispatch('fetchInfo')
-    }
-
-    this.loading = false
-  },
   computed: {
     error() {
       return this.$store.getters.error
@@ -52,7 +51,22 @@ export default {
   },
   watch: {
     error(fbError) {
-      this.$error(messages[fbError.code] || 'Что-то пошло не так')
+      this.$error(localizeFilter(messages[fbError.code]) || localizeFilter('Message_Something_Wrong'))
+    }
+  },
+  async mounted() {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
+
+    const isRuLocale = this.$store.getters.info.locale === 'ru-RU'
+    localStorage.setItem('locale', JSON.stringify(isRuLocale))
+
+    this.loading = false
+  },
+  methods: {
+    localizeStr(str) {
+      return localizeFilter(str)
     }
   },
   components: {

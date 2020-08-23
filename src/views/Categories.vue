@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{'Menu_Categories' | localize}}</h3>
     </div>
     <section>
       <Loader v-if="loading" />
@@ -17,7 +17,7 @@
           @updated="updateCategories"
         />
 
-        <p v-else class="center">Категорий пока нет</p>
+        <p v-else class="center">{{'Category_Not_Found' | localize}}</p>
 
       </div>
     </section>
@@ -31,6 +31,11 @@ import Loader from '@/components/app/Loader'
 
 export default {
   name: 'categories',
+  metaInfo() {
+    return {
+      title: this.$title('Menu_Categories')
+    }
+  },
   data: () => ({
     categories: [],
     loading: true,

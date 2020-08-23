@@ -5,9 +5,9 @@ export default {
       position: 'bottom'
     }
 
-    if (el.classList.contains('btn-floating')) {
+    if (el.dataset.btn === 'add' || el.dataset.btn === 'refresh') {
       options.position = 'left'
-    } else if (el.classList.contains('btn')) {
+    } else if (el.dataset.btn === 'open') {
       options.position = 'top'
     }
 

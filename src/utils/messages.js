@@ -1,7 +1,7 @@
 export default {
-  'logout': 'Вы вышли из системы',
-  'login': 'Для начала войдите в систему',
-  'auth/user-not-found': 'Пользователя с таким email не существует',
-  'auth/wrong-password': 'Неверный пароль',
-  'auth/email-already-in-use': 'Email уже занят'
+  'logout': 'Message_Logout',
+  'login': 'Message_Login',
+  'auth/user-not-found': 'Message_User_Not_Found',
+  'auth/wrong-password': 'Message_Wrong_Password',
+  'auth/email-already-in-use': 'Message_Email_In_Use'
 }

@@ -591,3 +591,32 @@ Vue.filter('localize', localizeFilter)
 
 Для перерендеринга сайдбара внутри MainLayout.vue добавим динамическое компьютид свойство locale()
 Привяжем его к атрибуту :key сайдбара, чтобы форсировать перерендеринг
+
+********** 20 **********
+
+29.
+Устанавливаем пакет vue-meta
+Он позволяет изменять <title> в блоке <head> для каждой страницы
+npm install --save vue-meta
+
+В файле main.js добавляем данный плагин и регистрируем его
+import VueMeta from 'vue-meta'
+Vue.use(VueMeta)
+
+После чего на каждой странице можно добавлять поле metaInfo в <script>
+Если записать его как метод, то <title> будет динамически изменяться
+При записи его как свойства такого эффекта нет
+
+Добавляем к <title> название приложения
+Прописываем его в глобальной переменной VUE_APP_TITLE внутри .env
+
+Создаём плагин utils/title.plugin.js
+Регистрируем его в файле main.js
+Vue.use(titlePlugin)
+
+Деплой проекта
+npm install -g firebase-tools
+
+firebase login
+firebase init
+firebase deploy

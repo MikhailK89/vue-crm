@@ -3,14 +3,14 @@
     <Loader v-if="loading" />
 
     <p v-else-if="!record" class="center">
-      Запись с <strong>id={{$route.params.id}}</strong> не найдена
+      {{'Detail_Warning' | localize}}
     </p>
 
     <div v-else>
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link to="/history" class="breadcrumb">{{'Detail_History' | localize}}</router-link>
         <a @click.prevent class="breadcrumb">
-          {{record.type === 'income' ? 'Доход' : 'Расход'}}
+          {{record.type === 'income' ? localizeStr('Income') : localizeStr('Outcome')}}
         </a>
       </div>
       <div class="row">
@@ -20,9 +20,9 @@
             'red': record.type === 'outcome'
           }">
             <div class="card-content white-text">
-              <p>Описание: {{record.description}}</p>
-              <p>Сумма: {{record.amount | currency('RUB')}}</p>
-              <p>Категория: {{record.categoryName}}</p>
+              <p>{{'Detail_Description' | localize}}: {{record.description}}</p>
+              <p>{{'Amount' | localize}}: {{record.amount | currency('RUB')}}</p>
+              <p>{{'Detail_Category' | localize}}: {{record.categoryName}}</p>
 
               <small>{{record.date | date('datetime')}}</small>
             </div>
@@ -34,8 +34,15 @@
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter'
+
 export default {
   name: 'detail',
+  metaInfo() {
+    return {
+      title: this.$title('Detail_Title')
+    }
+  },
   data: () => ({
     record: null,
     loading: true
@@ -51,6 +58,11 @@ export default {
     }
 
     this.loading = false
+  },
+  methods: {
+    localizeStr(str) {
+      return localizeFilter(str)
+    }
   }
 }
 </script>

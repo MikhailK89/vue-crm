@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{'History_Title' | localize}}</h3>
     </div>
 
     <div class="history-chart">
@@ -11,20 +11,23 @@
     <Loader v-if="loading" />
 
     <p v-else-if="!records.length" class="center">
-      Записей пока нет
-      <router-link to="/record">Добавьте первую</router-link>
+      {{'History_Not_Found' | localize}}
+      <router-link to="/record">{{'History_Add_First' | localize}}</router-link>
     </p>
 
     <section v-else>
-      <HistoryTable :records="items" />
+      <HistoryTable
+        :records="items"
+        :pageSize="pageSize"
+      />
 
       <Paginate
         v-model="page"
         :page-count="pageCount"
         :click-handler="pageChangeHandler"
-        :prev-text="'Назад'"
-        :next-text="'Вперед'"
-        :container-class="'pagination'"
+        :prev-text="'History_Back' | localize"
+        :next-text="'History_Forward' | localize"
+        :container-class="'pagination center'"
         :page-class="'waves-effect'"
       />
     </section>
@@ -36,9 +39,15 @@ import paginationMixin from '@/mixins/pagination.mixin'
 import HistoryTable from '@/components/HistoryTable'
 import {Pie} from 'vue-chartjs'
 import {getChartColors} from '@/utils/chart.utils'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'history',
+  metaInfo() {
+    return {
+      title: this.$title('Menu_History')
+    }
+  },
   extends: Pie,
   mixins: [paginationMixin],
   data: () => ({
@@ -62,7 +71,9 @@ export default {
           ...record,
           categoryName: categories.find(c => c.id === record.categoryId).title,
           typeClass: record.type === 'income' ? 'green' : 'red',
-          typeText: record.type === 'income' ? 'Доход' : 'Расход'
+          typeText: record.type === 'income'
+            ? localizeFilter('Income')
+            : localizeFilter('Outcome')
         }
       }))
 
@@ -71,7 +82,7 @@ export default {
       this.renderChart({
         labels: categories.map(c => c.title),
         datasets: [{
-          label: 'Расходы по категориям',
+          label: localizeFilter('HistoryTable_Label'),
           data: categories.map(c => {
             return this.records.reduce((total, r) => {
               if (r.categoryId === c.id && r.type === 'outcome') {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{'ProfileTitle' | localize}}</h3>
+      <h3>{{'Profile_Title' | localize}}</h3>
     </div>
 
     <form class="form" @submit.prevent="submitHandler">
@@ -16,7 +16,7 @@
         <small
           class="helper-text invalid"
           v-if="$v.name.$dirty && !$v.name.required"
-        >{{'Message_EnterName' | localize}}</small>
+        >{{'Enter_Name' | localize}}</small>
       </div>
 
       <div class="switch">
@@ -39,15 +39,24 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import {required} from 'vuelidate/lib/validators'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'profile',
+  metaInfo() {
+    return {
+      title: this.$title('Profile_Title')
+    }
+  },
   data: () => ({
     name: '',
     isRuLocale: true
   }),
   validations: {
     name: {required}
+  },
+  computed: {
+    ...mapGetters(['info'])
   },
   mounted() {
     this.name = this.info.name
@@ -57,8 +66,8 @@ export default {
       window.M.updateTextFields()
     }, 0)
   },
-  computed: {
-    ...mapGetters(['info'])
+  updated() {
+    localStorage.setItem('locale', JSON.stringify(this.isRuLocale))
   },
   methods: {
     ...mapActions(['updateInfo']),

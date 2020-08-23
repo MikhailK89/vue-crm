@@ -1,9 +1,14 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Счет</h3>
+      <h3>{{'Menu_Account' | localize}}</h3>
 
-      <button class="btn waves-effect waves-light btn-small" @click="refresh">
+      <button
+        class="btn waves-effect waves-light btn-small"
+        data-btn="refresh"
+        @click="refresh"
+        v-tooltip="localizeStr('Home_Refresh')"
+      >
         <i class="material-icons">refresh</i>
       </button>
     </div>
@@ -28,9 +33,15 @@
 <script>
 import HomeBill from '@/components/HomeBill'
 import HomeCurrency from '@/components/HomeCurrency'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'home',
+  metaInfo() {
+    return {
+      title: this.$title('Menu_Account')
+    }
+  },
   data: () => ({
     loading: true,
     currency: null
@@ -44,6 +55,9 @@ export default {
       this.loading = true
       this.currency = await this.$store.dispatch('fetchCurrency')
       this.loading = false
+    },
+    localizeStr(str) {
+      return localizeFilter(str)
     }
   },
   components: {
