@@ -1,6 +1,10 @@
 # Demo page
 https://mikhailk89.github.io/vue-crm-app/
 
+# Test account
+email: v@mail.ru
+password: 123456
+
 # Account page problem
 This page contains a request from https to http. This throws a cross domain error.
 
