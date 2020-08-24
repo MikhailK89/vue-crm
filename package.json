@@ -2,6 +2,15 @@
   "name": "vue-crm",
   "version": "0.1.0",
   "private": true,
+  "description": "Vue CRM System",
+  "keywords": [
+    "Vue 2.x",
+    "vue-chartjs",
+    "Fixer API",
+    "vuelidate"
+  ],
+  "author": "Mikhail Kravchenko <kravch_mikhail@mail.ru>",
+  "license": "ISC",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
