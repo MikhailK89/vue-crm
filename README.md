@@ -1,6 +1,25 @@
 ## Demo page
 https://mikhailk89.github.io/vue-crm-demo/
 
+## About project
+It's the example of a simple CRM system for recording income and expenses by categories.
+
+User authorization is implemented using Firebase and [vuelidate package](https://www.npmjs.com/package/vuelidate) for validating form fields.
+
+User has the ability to add and modify data in the Firebase Database.
+
+The server side is not implemented in this project. So database queries are on the client side. Such an implementation is not safe.
+
+Fixer API allows you to make free requests only by http-protocol. So requests from https to http lead to cross-domain error. For this reason the Home page may not work.
+
+The package [vue-chartjs](https://www.npmjs.com/package/vue-chartjs) is used for graphical data presentation.
+
+The complete project guide in russian is in the file `/guide.txt`.
+
+The initial static pages are in the folder `/src/templates`.
+
+In this project alias `@` is used for more usable modules import. It leads to the primary folder `/src`.
+
 ## Installation
 Install `node_modules`: `npm install`
 
@@ -47,5 +66,7 @@ Vue CLI: https://cli.vuejs.org/guide/
 Firebase: https://firebase.google.com/docs/web/setup
 
 Chart.js: https://www.chartjs.org/docs/latest/
+
+vue-chartjs: https://vue-chartjs.org/guide/
 
 Fixer API: https://fixer.io/documentation
