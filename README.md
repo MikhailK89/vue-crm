@@ -5,6 +5,7 @@ Start dev server: `npm run serve`
 
 Build project: `npm run build`
 
+
 For security reasons the following files have been hidden: `.env` and `src/config/firebase.config.js`
 
 The file `.env` has the following structure:
