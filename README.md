@@ -22,7 +22,7 @@ async fetchCurrency() {
 }
 ```
 
-The file `src/config/firebase.config.js` has the following structure:
+The next file `src/config/firebase.config.js` has the following structure:
 ```javascript
 export default {
   apiKey: "",
