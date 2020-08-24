@@ -43,5 +43,7 @@ https://firebase.google.com/
 
 ## Docs
 Vue CLI: https://cli.vuejs.org/guide/
+
 Chart.js: https://www.chartjs.org/docs/latest/
+
 Fixer: https://fixer.io/documentation
