@@ -36,10 +36,12 @@ export default {
 }
 ```
 
-This config can be obtained when creating Firebase Database. Here: https://firebase.google.com/docs/web/setup
+This config can be obtained when creating Firebase Database. Read more [here](https://firebase.google.com/docs/web/setup).
 
 ## Docs
 Vue CLI: https://cli.vuejs.org/guide/
+
+Firebase: https://firebase.google.com/docs/web/setup
 
 Chart.js: https://www.chartjs.org/docs/latest/
 
