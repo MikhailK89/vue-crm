@@ -45,4 +45,4 @@ Firebase: https://firebase.google.com/docs/web/setup
 
 Chart.js: https://www.chartjs.org/docs/latest/
 
-Fixer: https://fixer.io/documentation
+Fixer API: https://fixer.io/documentation
