@@ -27,6 +27,13 @@ Start dev server: `npm run serve`
 
 Build project: `npm run build`
 
+To configure the project build use the file `/vue.config.js`. To nest the project in subdirectories on the server use the following setting in `/vue.config.js`:
+```javascript
+module.exports = {
+  publicPath: '/subdirectory/'
+}
+```
+
 For security reasons the following files have been hidden: `.env` and `src/config/firebase.config.js`
 
 The file `.env` has the following structure:
@@ -70,3 +77,8 @@ Chart.js: https://www.chartjs.org/docs/latest/
 vue-chartjs: https://vue-chartjs.org/guide/
 
 Fixer API: https://fixer.io/documentation
+
+## Special thanks to Vladilen Minin for the project idea
+His Youtube channel here: https://www.youtube.com/c/VladilenMinin/videos
+
+His Github repository here: https://github.com/vladilenm
