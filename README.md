@@ -1,3 +1,6 @@
+## Demo page
+https://mikhailk89.github.io/vue-crm-demo/
+
 ## Installation
 Install `node_modules`: `npm install`
 
