@@ -70,5 +70,7 @@
   "Message_Category_Created": "Категория была создана",
   "Message_Category_Updated": "Категория успешно обновлена",
   "Message_Record_Updated": "Запись успешно обновлена",
-  "Message_Record_Insufficient": "Недостаточно средств на счёте"
+  "Message_Record_Insufficient": "Недостаточно средств на счёте",
+  "Tooltip_Excess": "Превышение на",
+  "Tooltip_Left": "Осталось"
 }

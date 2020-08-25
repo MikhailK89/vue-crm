@@ -70,5 +70,7 @@
   "Message_Category_Created": "Category has been created",
   "Message_Category_Updated": "Category has been successfully updated",
   "Message_Record_Updated": "Record has been successfully updated",
-  "Message_Record_Insufficient": "Insufficient funds on the account"
+  "Message_Record_Insufficient": "Insufficient funds on the account",
+  "Tooltip_Excess": "Excess of",
+  "Tooltip_Left": "Left"
 }
